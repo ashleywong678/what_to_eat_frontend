@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const validTypes = { login: 'Login', signup: 'Sign-up' };
+import { validTypes } from './constants';
 const defaultForm = { username: '', password: '' };
 
 const LoginPage = ({ setCredentials, status }) => {

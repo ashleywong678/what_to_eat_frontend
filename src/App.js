@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import LoginPage from './LoginPage/index';
+import RecipesTable from './RecipesTable/index';
 
 function App() {
 	const [token, setToken] = useState('');
@@ -19,6 +20,11 @@ function App() {
 			</header>
 			<Router>
 				<Switch>
+					<Route exact path='/recipes'>
+						{() => {
+							if (token.length) return <RecipesTable />;
+						}}
+					</Route>
 					<Route path='/'>
 						{token ? (
 							<Redirect to='/recipes' />
