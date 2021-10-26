@@ -1,0 +1,29 @@
+.nav-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    list-style-type: none;
+    background: #232C33;
+    color: #EBEBEB;
+    padding: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.nav-bar a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    align-self: center;
+}
+
+.nav-link:hover {
+    background: rgba(42, 192, 22, 0.33);
+}
+
+.main-heading {
+    font-size: 25px;
+    margin: 0;
+    color: #2BC016;
+}
