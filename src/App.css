@@ -6,3 +6,7 @@
   text-align: start;
   padding: 0 15px;
 }
+
+.no-data {
+  width: 90%;
+}

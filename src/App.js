@@ -12,6 +12,7 @@ import RecipesTable from './RecipesTable/index';
 
 function App() {
 	const [token, setToken] = useState('');
+	const [user, setUser] = useState({});
 
 	return (
 		<div className='App'>
@@ -22,7 +23,7 @@ function App() {
 				<Switch>
 					<Route exact path='/recipes'>
 						{() => {
-							if (token.length) return <RecipesTable />;
+							if (token.length) return <RecipesTable user={user} />;
 						}}
 					</Route>
 					<Route path='/'>
@@ -32,6 +33,7 @@ function App() {
 							<LoginPage
 								setCredentials={(value) => {
 									setToken(value.token);
+									setUser(value.user);
 									return <Redirect to='/main' />;
 								}}
 							/>
