@@ -7,8 +7,8 @@ const NavBar = () => {
 	const [location, setLocation] = useState(window.location.pathname);
 
 	return (
-		<Router>
-			<div className='nav-bar'>
+		<div className='nav-bar'>
+			<Router>
 				<Link to='/recipes' onClick={() => setLocation('')}>
 					<h1 className='main-heading'>What to Eat</h1>
 				</Link>
@@ -29,8 +29,8 @@ const NavBar = () => {
 				<Link className='nav-link' to='/logout' onClick={() => setLocation('')}>
 					Logout
 				</Link>
-			</div>
-		</Router>
+			</Router>
+		</div>
 	);
 };
 
