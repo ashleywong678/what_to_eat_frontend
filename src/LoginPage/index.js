@@ -48,7 +48,7 @@ const LoginPage = ({ setCredentials, status }) => {
 				<label htmlFor='username'>Username:</label>
 				<input
 					style={{ margin: '5px' }}
-					type='username'
+					type='text'
 					name='username'
 					id='username'
 					required
