@@ -5,8 +5,18 @@ import axios from 'axios';
 
 import NoData from '../images/sad-plate.jpg';
 
-const RecipesTable = ({ user }) => {
+const RecipesTable = ({ token }) => {
 	const [recipes, setRecipes] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get(`${process.env.REACT_APP_API}/recipes`, {
+				headers: { Authorization: `Bearer ${token}` },
+			})
+			.then((res) => res.data)
+			.then((res) => setRecipes(res))
+			.catch((err) => console.log('error', err));
+	}, [token]);
 
 	const toRender = () =>
 		!recipes.length ? (
@@ -24,7 +34,7 @@ const RecipesTable = ({ user }) => {
 };
 
 RecipesTable.propTypes = {
-	user: PropTypes.object,
+	token: PropTypes.string,
 };
 
 export default RecipesTable;
