@@ -21,7 +21,7 @@ const LoginPage = ({ setCredentials, status }) => {
 
 		if (type === 'login') {
 			await axios
-				.post(`http://localhost:3001/api/log_in`, form)
+				.post(`${process.env.REACT_APP_API}/log_in`, form)
 				.then((res) => res.data)
 				.then((res) => {
 					setCredentials(res);
@@ -32,7 +32,7 @@ const LoginPage = ({ setCredentials, status }) => {
 				});
 		} else {
 			await axios
-				.post(`http://localhost:3001/api/sign_up`, form)
+				.post(`${process.env.REACT_APP_API}/sign_up`, form)
 				.then((res) => res.data)
 				.then((res) => setCredentials(res))
 				.catch((err) => {
