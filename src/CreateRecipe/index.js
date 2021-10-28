@@ -11,6 +11,12 @@ const defaultForm = {
 	difficultyLevel: 'easy',
 };
 
+const deleteButton = (onClickFn) => (
+	<button type='button' className='delete-button' onClick={onClickFn}>
+		Delete
+	</button>
+);
+
 const CreateRecipe = ({ token }) => {
 	const [form, setForm] = useState(defaultForm);
 
@@ -19,15 +25,24 @@ const CreateRecipe = ({ token }) => {
 		setForm(newForm);
 	};
 
+	// updates value in array
 	const handleListChange = (index, value, type) => {
 		const newArr = form[type];
 		newArr[index] = value;
 		setValue(type, newArr);
 	};
 
+	// add new item to array
 	const handleAdd = (type) => {
 		const newArr = form[type];
 		newArr.push('');
+		setValue(type, newArr);
+	};
+
+	// deletes item in array
+	const handleDeleteItem = (type, index) => {
+		const newArr = form[type];
+		newArr.splice(index, 1);
 		setValue(type, newArr);
 	};
 
@@ -44,6 +59,9 @@ const CreateRecipe = ({ token }) => {
 						handleListChange(index, target.value, 'ingredients')
 					}
 				/>
+				{index !== 0
+					? deleteButton(() => handleDeleteItem('ingredients', index))
+					: null}
 				<br />
 			</>
 		));
@@ -61,12 +79,17 @@ const CreateRecipe = ({ token }) => {
 					onChange={({ target }) =>
 						handleListChange(index, target.value, 'instructions')
 					}
+					required={index === 0}
 				/>
+				{index !== 0
+					? deleteButton(() => handleDeleteItem('instructions', index))
+					: null}
 				<br />
 			</>
 		));
 	};
 	console.log('form', form);
+
 	const handleSubmit = async (event) => {};
 
 	return (
@@ -83,7 +106,7 @@ const CreateRecipe = ({ token }) => {
 					onChange={({ target }) => setValue('title', target.value)}
 				/>
 				<br />
-				<label>Ingredients:</label>
+				<label htmlFor='ingredient-1'>Ingredients:</label>
 				<br />
 				{ingredientsRender()}
 				<button type='button' onClick={() => handleAdd('ingredients')}>
@@ -91,11 +114,11 @@ const CreateRecipe = ({ token }) => {
 				</button>
 				<br />
 
-				<label>Instructions"</label>
+				<label htmlFor='instruction-1'>Instructions:</label>
 				<br />
 				{instructionsRender()}
 				<button type='button' onClick={() => handleAdd('instructions')}>
-					Add Ingredient
+					Add Instructions
 				</button>
 
 				<br />
@@ -143,13 +166,3 @@ CreateRecipe.propTypes = {
 };
 
 export default CreateRecipe;
-
-/*
-ingredients: {
-    type: [],
-},
-instructions: {
-    type: [],
-    required: true,
-},
-*/
