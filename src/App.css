@@ -9,3 +9,7 @@
 .no-data {
   max-width: 80vw;
 }
+
+button {
+  cursor: pointer;
+}
